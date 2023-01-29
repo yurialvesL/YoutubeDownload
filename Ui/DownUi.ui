@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>DownTube</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
@@ -202,7 +202,7 @@ Color:white;
      </rect>
     </property>
     <property name="value">
-     <number>60</number>
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_title">
