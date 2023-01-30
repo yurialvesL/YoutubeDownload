@@ -36,7 +36,7 @@ Color:white
 }
 
 QFrame{
-Background-color:Black;
+Background-color:transparent;
 border-radius:30px;
 }
 
@@ -60,7 +60,9 @@ text-align:center;
 
 QCheckBox{
 Color:white;
-}</string>
+Background-color: transparent;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="lbl_tittle_url">
@@ -97,7 +99,7 @@ Color:white;
      <string notr="true"/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_search">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -137,28 +139,7 @@ Color:white;
      <string>TITULO</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>450</y>
-      <width>101</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-     </font>
-    </property>
-    <property name="currentText">
-     <string/>
-    </property>
-    <property name="currentIndex">
-     <number>-1</number>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="chk_audionly">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -179,7 +160,7 @@ Color:white;
      <string>Somente audio</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btn_download">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -190,19 +171,6 @@ Color:white;
     </property>
     <property name="text">
      <string>Download</string>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>530</y>
-      <width>411</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_title">
@@ -230,11 +198,14 @@ Color:white;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>20</x>
       <y>80</y>
-      <width>341</width>
+      <width>431</width>
       <height>271</height>
      </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -246,12 +217,72 @@ Color:white;
      <pixmap>D:/Download/no-internet (1).png</pixmap>
     </property>
     <property name="scaledContents">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="lbl_video_status">
+    <property name="geometry">
+     <rect>
+      <x>126</x>
+      <y>540</y>
+      <width>181</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>430</y>
+      <width>120</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QComboBox" name="cb_res">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+      </font>
+     </property>
+     <property name="currentText">
+      <string/>
+     </property>
+     <property name="currentIndex">
+      <number>-1</number>
+     </property>
+    </widget>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>lbl_tittle_url</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>btn_search</zorder>
+   <zorder>title_video</zorder>
+   <zorder>chk_audionly</zorder>
+   <zorder>btn_download</zorder>
+   <zorder>lbl_title</zorder>
+   <zorder>label</zorder>
+   <zorder>lbl_video_status</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
