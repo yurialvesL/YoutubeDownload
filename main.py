@@ -6,6 +6,7 @@ from Ui.DownUi import Ui_MainWindow
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt6.QtGui import QPixmap
 from pytube import YouTube
+from pytube.exceptions import *
 from Avisos import Avisos
 
 
@@ -30,7 +31,7 @@ class Downtube(QMainWindow, Ui_MainWindow):
         self.btn_download.clicked.connect(self.down_video)
 
     def setavalue(self) -> None:
-        self.cb_res.addItems(['360p', '480p', '720p', '1080p'])
+        self.cb_res.addItems(['360p', '480p', '720p'])
 
 
     def search_video(self) -> None:
@@ -49,31 +50,60 @@ class Downtube(QMainWindow, Ui_MainWindow):
             case '360p':
                 self.lbl_video_status.setText('Baixando aguarde...')
                 file = QFileDialog.getExistingDirectory(caption='Selecione a pasta')
-                youtube = YouTube(self.lineEdit.text())
-                youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()).download(output_path=file)
-                self.lbl_video_status('Sucesso!')
+                if self.chk_audionly.isChecked():
+                    youtube = YouTube(self.lineEdit.text())
+                    out_file = youtube.streams.filter(only_audio=True).get_audio_only().download(output_path=file)
+                    base, ext = os.path.splitext(out_file)
+                    new_file = base + '.mp3'
+                    os.rename(out_file, new_file)
+                    self.lbl_video_status.setText('Sucesso!')
+                else:
+                    try:
+                        youtube = YouTube(self.lineEdit.text())
+                    except VideoUnavailable:
+                            print('video n disponivel')
+                    else:
+                        youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText())\
+                            .download(output_path=file)
+                        self.lbl_video_status.setText('Sucesso!')
             case '480p':
                 self.lbl_video_status.setText('Baixando aguarde...')
                 file = QFileDialog.getExistingDirectory(caption='Selecione a pasta')
-                youtube = YouTube(self.lineEdit.text())
-                youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()).download(
-                    output_path=file)
-                self.lbl_video_status('Sucesso!')
+                if self.chk_audionly.isChecked():
+                    youtube = YouTube(self.lineEdit.text())
+                    out_file = youtube.streams.filter(only_audio=True).get_audio_only().download(output_path=file)
+                    base, ext = os.path.splitext(out_file)
+                    new_file = base + '.mp3'
+                    os.rename(out_file, new_file)
+                    self.lbl_video_status.setText('Sucesso!')
+                else:
+                    try:
+                        youtube = YouTube(self.lineEdit.text())
+                    except VideoUnavailable:
+                        print('video n disponivel')
+                    else:
+                        youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()) \
+                            .download(output_path=file)
+                        self.lbl_video_status.setText('Sucesso!')
             case '720p':
                 self.lbl_video_status.setText('Baixando aguarde...')
                 file = QFileDialog.getExistingDirectory(caption='Selecione a pasta')
-                youtube = YouTube(self.lineEdit.text())
-                youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()).download(
-                    output_path=file)
-                self.lbl_video_status('Sucesso!')
-            case '1080p':
-                self.lbl_video_status.setText('Baixando aguarde...')
-                file = QFileDialog.getExistingDirectory(caption='Selecione a pasta')
-                youtube = YouTube(self.lineEdit.text())
-                youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()).download(
-                    output_path=file)
-                self.lbl_video_status('Sucesso!')
-
+                if self.chk_audionly.isChecked():
+                    youtube = YouTube(self.lineEdit.text())
+                    out_file = youtube.streams.filter(only_audio=True).get_audio_only().download(output_path=file)
+                    base, ext = os.path.splitext(out_file)
+                    new_file = base + '.mp3'
+                    os.rename(out_file, new_file)
+                    self.lbl_video_status.setText('Sucesso!')
+                else:
+                    try:
+                        youtube = YouTube(self.lineEdit.text())
+                    except VideoUnavailable:
+                        print('video n disponivel')
+                    else:
+                        youtube.streams.filter(file_extension='mp4').get_by_resolution(self.cb_res.currentText()) \
+                            .download(output_path=file)
+                        self.lbl_video_status.setText('Sucesso!')
 
 if __name__ == '__main__':
     qt = QApplication(sys.argv)
